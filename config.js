@@ -6,7 +6,7 @@ const config = {
     SERVER_PORT : process.env.LOCAL_PORT || 8001,
     secret : 'thequickfoxjumpedoverthelazydog',
     geo_url: 'https://maps.googleapis.com/maps/api/geocode/json',
-    geo_key: 'AIzaSyC53deGuD9TB4tJsbB2h_NtOMzUxANOVZs',
+    geo_key: process.env.GOOGLE_KEYS,
     prepare : false
 }
 

@@ -1,4 +1,4 @@
 [
-    {"name":"John Doe"},
-    {"name":"Jane Smith"}
+    {"name":"John Doe", "avatar":"john.png"},
+    {"name":"Jane Smith", "avatar":"jane.png"}
 ]

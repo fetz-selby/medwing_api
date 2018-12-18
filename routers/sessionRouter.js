@@ -36,7 +36,7 @@ export default class SessionRoutes{
         const user = await this.UserModel.findOne({where: {id, status: 'A'}});
 
         if(user){
-            const token = jwt.sign({user}, appConfig.config.secret, {expiresIn: '1d'});
+            const token = jwt.sign({user}, appConfig.config.secret, {expiresIn: '10d'});
 
             res.status(200)
             .json({

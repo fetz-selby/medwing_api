@@ -16,8 +16,8 @@ export default class GeoServices{
             const {lat, lng} = geo_data.data.results[0].geometry.location;
             const address = geo_data.data.results[0].formatted_address;
 
-            const mini_lat = l_lat.toString().substr(0,4);
-            const mini_lng = l_lng.toString().substr(0.4);
+            const mini_lat = l_lat.toString().substr(0,5);
+            const mini_lng = l_lng.toString().substr(0.5);
 
             (address.toLowerCase().includes(l_address.toLowerCase()) && 
              lat.toString().includes(mini_lat) &&
