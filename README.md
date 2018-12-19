@@ -72,9 +72,6 @@ A token is required before the services(REST) can be used. It has four(4) main e
 ##### locations
 `/medwing/api/v1/locations`
 
-## Backlogs ##
-* Improve on lat and lng diff checking 
-
 ## Technologies and Frameworks used ##
 * [React](https://reactjs.org/)
 * [Redux](https://redux.js.org/)
@@ -84,3 +81,6 @@ A token is required before the services(REST) can be used. It has four(4) main e
 * [JWT](https://jwt.io/)
 * [Webpack](https://webpack.js.org/)
 * [Google Geocoding](https://cloud.google.com/maps-platform/)
+
+## Backlogs ##
+* Improve on lat and lng diff checking 
