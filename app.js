@@ -7,9 +7,9 @@ import * as appConfig from './config';
 import jwt from 'jsonwebtoken';
 import cors from 'cors';
 import compression from 'compression';
-import https from 'https';
+// import https from 'https';
 import http from 'http';
-import fs from 'fs';
+// import fs from 'fs';
 
 
 //Models
@@ -24,8 +24,6 @@ import GeoRouter from './routers/geoRouter';
 
 //Services
 import StoreService from './services/StoreService';
-import { parse } from 'path';
-
 
 export default class App {
 
@@ -48,14 +46,6 @@ export default class App {
                         activeDuration: 5*60*1000, 
                         httpOnly: true, 
                         cookie: {secure: false }}));
-
-        //CORS enabling
-        // app.use((req, res, next)=>{
-        //   res.header("Access-Control-Allow-Origin", "*");
-        //   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-        //   res.header("Access-Control-Allow-Methods", "POST, GET, PUT, DELETE, OPTIONS");
-        //   next();
-        // });
 
         //logging
         app.use(logger('dev'));
@@ -130,21 +120,21 @@ export default class App {
 
     finalize(app){
         const HTTP_PORT = appConfig.config.HTTP_SERVER_PORT;
-        const HTTPS_PORT = appConfig.config.HTTPS_SERVER_PORT;
+        // const HTTPS_PORT = appConfig.config.HTTPS_SERVER_PORT;
 
-        const options = {
-            key: fs.readFileSync('medwing-key.pem'),
-            cert: fs.readFileSync('medwing-cert.pem'),
-            passphrase: '134119601Hello'
-          };
+        // const options = {
+        //     key: fs.readFileSync('medwing-key.pem'),
+        //     cert: fs.readFileSync('medwing-cert.pem'),
+        //     passphrase: '134119601Hello'
+        //   };
 
         const httpServer = http.createServer(app); 
-        const httpsServer = https.createServer(options, app);
+        // const httpsServer = https.createServer(options, app);
         
         httpServer.listen(HTTP_PORT);
-        httpsServer.listen(HTTPS_PORT, ()=>{
-            console.log('secure is running')
-        });
+        // httpsServer.listen(HTTPS_PORT, ()=>{
+        //     console.log('secure is running')
+        // });
     }
 }
 
