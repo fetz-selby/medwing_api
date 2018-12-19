@@ -37,8 +37,8 @@ export default class UserRoutes{
     }
 
     async fetchAllUsers(res){
-        const {IP, SERVER_PORT} = appConfig.config;
-        const url = IP+':'+SERVER_PORT+'/resources/images/';
+        const {IP, HTTP_SERVER_PORT} = appConfig.config;
+        const url = IP+':'+HTTP_SERVER_PORT+'/resources/images/';
 
         const results = await this.UserModel.findAll();
         const users = results.map((user)=>{user.avatar = url+user.avatar; return user;});
