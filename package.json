@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack",
-    "start-server-dev": "webpack --mode=development && node ./build/app.bundle.js"
+    "start-server-dev": "webpack --mode=development && node ./build/app.bundle.js",
+    "start-server-prod":"webpack --mode=production && node ./build/app.bundle.js"
   },
   "author": "",
   "license": "ISC",
