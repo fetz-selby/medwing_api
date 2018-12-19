@@ -6,7 +6,11 @@ import session from 'express-session';
 import * as appConfig from './config';
 import jwt from 'jsonwebtoken';
 import cors from 'cors';
-import path from 'path';
+import compression from 'compression';
+import https from 'https';
+import http from 'http';
+import fs from 'fs';
+
 
 //Models
 import User from './models/userModel';
@@ -20,6 +24,7 @@ import GeoRouter from './routers/geoRouter';
 
 //Services
 import StoreService from './services/StoreService';
+import { parse } from 'path';
 
 
 export default class App {
@@ -35,6 +40,7 @@ export default class App {
         app.use(bodyParser.json({limit: '50mb', parameterLimit: 1000000}));
         app.use(bodyParser.urlencoded({limit: '50mb', extended: true, parameterLimit: 1000000}));
         app.use(cookieParser());
+        app.use(compression());
         app.use(session({resave:true, saveUninitialized: true, 
                         secret: appConfig.config.secret,
                         cookieName: 'session',
@@ -123,9 +129,21 @@ export default class App {
     }
 
     finalize(app){
-        const PORT = appConfig.config.SERVER_PORT;
-        app.listen(parseInt(PORT), ()=>{
-            console.log('Running on PORT ::: '+PORT);
+        const HTTP_PORT = appConfig.config.HTTP_SERVER_PORT;
+        const HTTPS_PORT = appConfig.config.HTTPS_SERVER_PORT;
+
+        const options = {
+            key: fs.readFileSync('medwing-key.pem'),
+            cert: fs.readFileSync('medwing-cert.pem'),
+            passphrase: '134119601Hello'
+          };
+
+        const httpServer = http.createServer(app); 
+        const httpsServer = https.createServer(options, app);
+        
+        httpServer.listen(HTTP_PORT);
+        httpsServer.listen(HTTPS_PORT, ()=>{
+            console.log('secure is running')
         });
     }
 }

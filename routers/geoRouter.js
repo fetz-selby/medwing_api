@@ -1,5 +1,6 @@
 import express from 'express';
-import Geo from '../services/GeoServices'
+import Geo from '../services/GeoServices';
+import * as appConstants from '../services/appConstants';
     
 export default class GeoRoutes{
 
@@ -29,8 +30,26 @@ export default class GeoRoutes{
         try{
             const geo_location = await this.geo.getGeoLocationByAddress(l_address);
 
-            if(!geo_location.success){
-                throw new Error('no location found');
+            if(!geo_location.success && (geo_location.code === appConstants.NETWORK_OK)){
+                res.status(200)
+                .json({
+                    success: false,
+                    code: appConstants.NETWORK_OK,
+                    message: 'No location found'
+                })   
+                
+                return;      
+            }
+
+            if(!geo_location.success && (geo_location.code === appConstants.NETWORK_DOWN)){
+                res.status(200)
+                .json({
+                    success: false,
+                    code: appConstants.NETWORK_DOWN,
+                    message: 'Third party down'
+                })
+
+                return;
             }
 
             const {lat, lng, address} = geo_location;

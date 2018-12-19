@@ -1,4 +1,5 @@
 import express from 'express';
+import * as appConfig from '../config';
     
 export default class UserRoutes{
 
@@ -36,7 +37,11 @@ export default class UserRoutes{
     }
 
     async fetchAllUsers(res){
-        const users = await this.UserModel.findAll();
+        const {IP, SERVER_PORT} = appConfig.config;
+        const url = IP+':'+SERVER_PORT+'/resources/images/';
+
+        const results = await this.UserModel.findAll();
+        const users = results.map((user)=>{user.avatar = url+user.avatar; return user;});
         res.status(200)
         .json({
             success: true,

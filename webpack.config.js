@@ -1,4 +1,6 @@
 const nodeExternals = require('webpack-node-externals');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
+
 
 module.exports = {
     entry: "./app.js",
@@ -18,5 +20,8 @@ module.exports = {
         ]
     },
     externals : [nodeExternals()],
-    plugins: []
+    plugins: [new CopyWebpackPlugin([
+        {from : './resources/users.json', to:'./resources/users.json'}, 
+        {from : './resources/images/', to:'./resources/images/'},
+    ])]
 };

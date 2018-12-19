@@ -1,5 +1,6 @@
 import express from 'express';
 import Geo from '../services/GeoServices';
+import * as appContants from '../services/appConstants';
     
 export default class LocationRoutes{
 
@@ -168,13 +169,21 @@ export default class LocationRoutes{
         try{
             const user = await this.UserModel.findOne({where:{id: data.user_id, status:'A'}});
             if(!user) throw new Error('user does not exist');
-            
 
             //Validate location
             const {address:l_address, lat:l_lat, lng:l_lng} = data;
 
             const geo_location = await this.geo.isValidGeoLocation(l_address, l_lat, l_lng);
-            if(!geo_location.success) throw new Error('no location found');
+            if(!geo_location.success && (geo_location.code === appContants.NETWORK_OK)){
+                res.status(200)
+                .json({
+                    success: false,
+                    code: appContants.NETWORK_OK,
+                    message: 'No location found'
+                })
+
+                return;
+            }
             
             const {address,lat,lng} = geo_location;
             const {title, user_id} = data;

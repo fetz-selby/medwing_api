@@ -3,7 +3,8 @@ var Sequelize = require('sequelize');
 
 const config = {
     IP : process.env.SERVER_IP,
-    SERVER_PORT : process.env.LOCAL_PORT || 8001,
+    HTTP_SERVER_PORT : process.env.HTTP_LOCAL_PORT || 8001,
+    HTTPS_SERVER_PORT : process.env.HTTPS_LOCAL_PORT || 8443,
     secret : 'thequickfoxjumpedoverthelazydog',
     geo_url: 'https://maps.googleapis.com/maps/api/geocode/json',
     geo_key: process.env.GOOGLE_KEYS,

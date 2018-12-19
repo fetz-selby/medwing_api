@@ -12,7 +12,7 @@ export default class StoreService{
     async initDB(){
         const app = this;
         users.map(async(user)=>{
-            await app.UserModel.create({name: user.name});
+            await app.UserModel.create({name: user.name, avatar: user.avatar});
         })
     }
 
