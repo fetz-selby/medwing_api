@@ -8,7 +8,7 @@ const config = {
     secret : 'thequickfoxjumpedoverthelazydog',
     geo_url: 'https://maps.googleapis.com/maps/api/geocode/json',
     geo_key: process.env.GOOGLE_KEYS,
-    prepare : false
+    prepare : true
 }
 
 const sequelize = new Sequelize(process.env.DB_NAME || 'MEDWING_TEST', process.env.DB_USER || 'medwing_admin', process.env.DB_PASSWORD || 'pa55w0rd', {
