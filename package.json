@@ -9,7 +9,7 @@
     "start-server-dev": "webpack --mode=development && node ./build/app.bundle.js",
     "start-server-prod":"webpack --mode=production && node ./build/app.bundle.js"
   },
-  "author": "",
+  "author": "selby",
   "license": "ISC",
   "dependencies": {
     "axios": "^0.18.0",
