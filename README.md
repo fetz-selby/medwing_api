@@ -57,7 +57,7 @@
   
   
 ## Overview of medwing-geolocation-api application ##
-This implements google geocoding(any geo coding third party can be integrated) api. Features include search,create,update and delete geocoding.
+This implements google geocoding(any geo coding third party can be integrated) api. Features include search,create,update and delete stored geocoding.
 A token is required before the services(REST) can be used. It has four(4) main endpoints, these include sessions, users, geocoding, and locations.
 
 ##### users
