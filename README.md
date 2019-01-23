@@ -73,8 +73,7 @@ A token is required before the services(REST) can be used. It has four(4) main e
 `/medwing/api/v1/locations`
 
 ## Technologies and Frameworks used ##
-* [React](https://reactjs.org/)
-* [Redux](https://redux.js.org/)
+
 * [NodeJS](https://nodejs.org/en/)
 * [Express](https://expressjs.com/)
 * [Sequelize](http://docs.sequelizejs.com/)
